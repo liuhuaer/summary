@@ -1,25 +1,24 @@
 # summary
-1.多线程
-  pthread_create()是创建线程的函数，功能是创建线程（实际上就是确定调用该线程函数的入口点），在线程创建以后，就开始运行相关的线程函数。
-  #include <pthread.h>
-  //函数原型声明,　若成功则返回0，否则返回出错编号
-  int pthread_create(
-                 pthread_t *restrict tidp,   //新创建的线程ID指向的内存单元。
-                 const pthread_attr_t *restrict attr,  //线程属性，默认为NULL
-                 void *(*start_rtn)(void *), //新创建的线程从start_rtn函数的地址开始运行
-                 void *restrict arg //默认为NULL。若上述函数需要参数，将参数放入结构中并将地址作为arg传入。
-                  );
-  pthread_join()函数会一直阻塞调用线程，直到指定的线程终止。当pthread_join()返回之后，应用程序可回收与已终
-  止线程关联的任何数据存储空间。 
+## 1.多线程
+  pthread_create()是创建线程的函数，功能是创建线程（实际上就是确定调用该线程函数的入口点），在线程创建以后，就开始运行相关的线程函数。  
+  #include <pthread.h>  
+  //函数原型声明,　若成功则返回0，否则返回出错编号  
+  int pthread_create(  
+                 pthread_t *restrict tidp,   //新创建的线程ID指向的内存单元。  
+                 const pthread_attr_t *restrict attr,  //线程属性，默认为NULL  
+                 void *(*start_rtn)(void *), //新创建的线程从start_rtn函数的地址开始运行  
+                 void *restrict arg //默认为NULL。若上述函数需要参数，将参数放入结构中并将地址作为arg传入。  
+                  );  
+  pthread_join()函数会一直阻塞调用线程，直到指定的线程终止。当pthread_join()返回之后，应用程序可回收与已终止线程关联的任何数据存储空间。 
   
-2.XXX.exe 中的 0x77c615de 处未处理的异常: 0xC00000FD: Stack overflow
-  解决方法：项目属性-》链接器-》系统-》在栈的调用尺寸中填写一个较大的值
+## 2.XXX.exe 中的 0x77c615de 处未处理的异常: 0xC00000FD: Stack overflow
+       解决方法：项目属性-》链接器-》系统-》在栈的调用尺寸中填写一个较大的值
   
-3.添加头文件#include <windows.h>后，std::会提示错误
+## 3.添加头文件#include <windows.h>后，std::会提示错误
   原因：？？？
   解决方法：删除 std::
 
-4.#pragma comment(lib, "XXX.lib")是visual studio中使用的，是导入1个库文件，以使程序可以调用相应的动态链接库。和在工程设置里写上链入
+## 4.#pragma comment(lib, "XXX.lib")是visual studio中使用的，是导入1个库文件，以使程序可以调用相应的动态链接库。和在工程设置里写上链入
   XXX.lib的效果一样，不过这种方法写的程序别人在使用你的代码的时候就不用再设置工程settings了。告诉连接器连接的时候要找XXX.lib，这样你
   就不用在linker的lib设置里指定这个lib了。
   #pragma仅仅影响编译器编译的时候 link.lib 库的问题。和运行时没有任何关系，当程序运行时，需要加载这个.dll文件。
