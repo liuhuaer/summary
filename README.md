@@ -134,7 +134,7 @@
 
         如果要追加数据，则每次执行memcpy()后，要将目标地址增加到要追加数据的地址。
 
-     4）source和destin都不一定是数组，任意的可读写的空间均可。   
+     4）source和dest都不一定是数组，任意的可读写的空间均可。   
       
    (4) void *memset(void *s, int ch, size_t n); 
     
