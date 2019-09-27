@@ -4,11 +4,11 @@
   #include <pthread.h>  
   //函数原型声明,　若成功则返回0，否则返回出错编号  
   int pthread_create(  
-                 	pthread_t *restrict tidp,   //新创建的线程ID指向的内存单元。  
-                 	const pthread_attr_t *restrict attr,  //线程属性，默认为NULL  
-                 	void *(*start_rtn)(void *), //新创建的线程从start_rtn函数的地址开始运行  
-                 	void *restrict arg //默认为NULL。若上述函数需要参数，将参数放入结构中并将地址作为arg传入。  
-                 	 );  
+                 pthread_t *restrict tidp,   //新创建的线程ID指向的内存单元。  
+                 const pthread_attr_t *restrict attr,  //线程属性，默认为NULL  
+                 void *(*start_rtn)(void *), //新创建的线程从start_rtn函数的地址开始运行  
+                 void *restrict arg //默认为NULL。若上述函数需要参数，将参数放入结构中并将地址作为arg传入。  
+                 );  
   pthread_join()函数会一直阻塞调用线程，直到指定的线程终止。当pthread_join()返回之后，应用程序可回收与已终止线程关联的任何数据存储空间。 
   
 ## 2.XXX.exe 中的 0x77c615de 处未处理的异常: 0xC00000FD: Stack overflow
@@ -57,6 +57,7 @@
   (4)cvRound()：返回跟参数最接近的整数值，即四舍五入；  
      cvFloor()：返回不大于参数的最大整数值，即向下取整;  
      cvCeil()：返回不小于参数的最小整数值，即向上取整；  
+  (5)cv::format() Mat类型的格式化输出函数，第一个参数是Mat类型变量，第二个参数是格式；  
   
 ## 9.constexpr变量必须在编译时进行初始化。所有constexpr对象都是const的，但是不是所有的const对象都是constexpr的。 VS2013不支持constexpr
  
@@ -66,7 +67,8 @@
 
 ## 11.ndk undefined reference to ‘AMediaExtractor_new’
 
-  在LOCAL_LDLIBS中添加  -lmediandk
+  在LOCAL_LDLIBS中添加  -lmediandk  
+  C++调用C函数库进行NDK编译时，头文件中的函数声明要使用extern C  
 
 ## 12.undefined reference to 'cv::imwrite(cv::String const&, cv::_InputArray const&, std::__ndk1::vector<int, std::__ndk1::allocator<int> > const&)'
 
@@ -104,7 +106,26 @@
    
 ## 16.C++库函数总结：
 
-   (1)int转string   int k; std::to_string(k);  
+   (1)int转string   int k; std::to_string(k); 
+   (2)math.h中的floor()函数：向下取整；  
+   (3)函数原型：void *memcpy(void *dest, const void *src, size_t n);  有时会很耗时
+
+      用法：#include<string.h>    
+
+      功能：从源src所指的内存地址的起始位置开始，拷贝n个字节的数据到目标dest所指的内存地址的起始位置中。  
+
+      说明：  
+
+      1）src和dest所指内存区域不能重叠，函数返回指向dest的指针。如果src和dest以任何形式出现了重叠，它的结果是未定义的。
+
+      2）与strcpy相比，memcpy遇到’\0’不结束，而且一定会复制完n个字节。只要保证src开始有n字节的有效数据，dest开始有n字节内存空间就行。
+
+      3）如果目标数组本身已有数据，执行memcpy之后，将覆盖原有数据（最多覆盖n个）。
+
+         如果要追加数据，则每次执行memcpy()后，要将目标地址增加到要追加数据的地址。
+
+      4）source和destin都不一定是数组，任意的可读写的空间均可。  
+   (4)
 
 ## 17.
    
