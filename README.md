@@ -106,7 +106,7 @@
    
 ## 16.C++库函数总结：
 
-   (1)int转string   int k; std::to_string(k); 
+   (1)int转string   int k; std::to_string(k);   
    (2)math.h中的floor()函数：向下取整；  
    (3)函数原型：void *memcpy(void *dest, const void *src, size_t n);  有时会很耗时
 
@@ -116,7 +116,7 @@
 
       说明：  
 
-      1）src和dest所指内存区域不能重叠，函数返回指向dest的指针。如果src和dest以任何形式出现了重叠，它的结果是未定义的。
+    1）src和dest所指内存区域不能重叠，函数返回指向dest的指针。如果src和dest以任何形式出现了重叠，它的结果是未定义的。
 
       2）与strcpy相比，memcpy遇到’\0’不结束，而且一定会复制完n个字节。只要保证src开始有n字节的有效数据，dest开始有n字节内存空间就行。
 
