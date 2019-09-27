@@ -124,11 +124,13 @@
 
          如果要追加数据，则每次执行memcpy()后，要将目标地址增加到要追加数据的地址。
 
-      4）source和destin都不一定是数组，任意的可读写的空间均可。  
-    (4)void *memset(void *s, int ch, size_t n);  
-      函数解释：将s中当前位置后面的n个字节 （typedef unsigned int size_t ）用 ch 替换并返回 s 。
-      memset：作用是在一段内存块中填充某个给定的值，它是对较大的结构体或数组进行清零操作的一种最快方法。
-      memset()函数原型是extern void *memset(void *buffer, int c, int count) buffer：为指针或是数组,c：是赋给buffer的值,count：是buffer的长度.
+      4）source和destin都不一定是数组，任意的可读写的空间均可。   
+      
+   (4) void *memset(void *s, int ch, size_t n); 
+    
+      函数解释：将s中当前位置后面的n个字节 （typedef unsigned int size_t ）用 ch 替换并返回 s 。  
+      memset：作用是在一段内存块中填充某个给定的值，它是对较大的结构体或数组进行清零操作的一种最快方法。  
+      memset()函数原型是extern void *memset(void *buffer, int c, int count) buffer：为指针或是数组,c：是赋给buffer的值,count：是buffer的长度.  
       
 
 ## 17.
