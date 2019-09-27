@@ -118,7 +118,8 @@
 
       1）src和dest所指内存区域不能重叠，函数返回指向dest的指针。如果src和dest以任何形式出现了重叠，它的结果是未定义的。
 
-      2）与strcpy相比，memcpy遇到’\0’不结束，而且一定会复制完n个字节。只要保证src开始有n字节的有效数据，dest开始有n字节内存空间就行。
+      2）与strcpy相比，memcpy遇到’\0’不结束，而且一定会复制完n个字节。只要保证src开始有n字节的有效数据，dest开始有n字  
+      节内存空间就行。
 
       3）如果目标数组本身已有数据，执行memcpy之后，将覆盖原有数据（最多覆盖n个）。
 
@@ -130,7 +131,8 @@
     
       函数解释：将s中当前位置后面的n个字节 （typedef unsigned int size_t ）用 ch 替换并返回 s 。  
       memset：作用是在一段内存块中填充某个给定的值，它是对较大的结构体或数组进行清零操作的一种最快方法。  
-      memset()函数原型是extern void *memset(void *buffer, int c, int count) buffer：为指针或是数组,c：是赋给buffer的值,count：是buffer的长度.  
+      memset()函数原型是extern void *memset(void *buffer, int c, int count) buffer：为指针或是数组,c：是赋给buffer的值  
+      ,count：是buffer的长度.  
       
 
 ## 17.
