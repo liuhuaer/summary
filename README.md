@@ -3,12 +3,12 @@
   pthread_create()是创建线程的函数，功能是创建线程（实际上就是确定调用该线程函数的入口点），在线程创建以后，就开始运行相关的线程函数。  
   #include <pthread.h>  
   //函数原型声明,　若成功则返回0，否则返回出错编号  
-  &#8195int pthread_create(  
-                 pthread_t *restrict tidp,   //新创建的线程ID指向的内存单元。  
-                 const pthread_attr_t *restrict attr,  //线程属性，默认为NULL  
-                 void *(*start_rtn)(void *), //新创建的线程从start_rtn函数的地址开始运行  
-                 void *restrict arg //默认为NULL。若上述函数需要参数，将参数放入结构中并将地址作为arg传入。  
-                  );  
+  int pthread_create(  
+                 	pthread_t *restrict tidp,   //新创建的线程ID指向的内存单元。  
+                 	const pthread_attr_t *restrict attr,  //线程属性，默认为NULL  
+                 	void *(*start_rtn)(void *), //新创建的线程从start_rtn函数的地址开始运行  
+                 	void *restrict arg //默认为NULL。若上述函数需要参数，将参数放入结构中并将地址作为arg传入。  
+                 	 );  
   pthread_join()函数会一直阻塞调用线程，直到指定的线程终止。当pthread_join()返回之后，应用程序可回收与已终止线程关联的任何数据存储空间。 
   
 ## 2.XXX.exe 中的 0x77c615de 处未处理的异常: 0xC00000FD: Stack overflow
