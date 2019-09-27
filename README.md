@@ -3,7 +3,7 @@
   pthread_create()是创建线程的函数，功能是创建线程（实际上就是确定调用该线程函数的入口点），在线程创建以后，就开始运行相关的线程函数。  
   #include <pthread.h>  
   //函数原型声明,　若成功则返回0，否则返回出错编号  
-  int pthread_create(  
+  &#8195int pthread_create(  
                  pthread_t *restrict tidp,   //新创建的线程ID指向的内存单元。  
                  const pthread_attr_t *restrict attr,  //线程属性，默认为NULL  
                  void *(*start_rtn)(void *), //新创建的线程从start_rtn函数的地址开始运行  
