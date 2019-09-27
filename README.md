@@ -74,28 +74,29 @@
 
 ## 13.Makefile中:=, =, ?=和+=的含义
 
-  (1) “=”  
+  (1)  “=”  
   
-     	"=”是最普通的等号，然而在Makefile中确实最容易搞错的赋值等号，使用”=”进行赋值，变量的值是整个makefile中最后被指定的值。不太容易理解，举个例子如下：  
-     	VIR_A = A  
-     	VIR_B = $(VIR_A) B  
-     	VIR_A = AA  
-     	经过上面的赋值后，最后VIR_B的值是AA B，而不是A B。在make时，会把整个makefile展开，拉通决定变量的值  
-  (2) “:=” 
+    "=”是最普通的等号，然而在Makefile中确实最容易搞错的赋值等号，使用”=”进行赋值，变量的值是整个makefile中最后被指定的值。  
+    不太容易理解，举个例子如下：  
+       VIR_A = A  
+       VIR_B = $(VIR_A) B  
+       VIR_A = AA  
+    经过上面的赋值后，最后VIR_B的值是AA B，而不是A B。在make时，会把整个makefile展开，拉通决定变量的值  
+  (2)  “:=” 
   
-     	相比于前面“最普通”的”=”，”:=”就容易理解多了。”:=”就表示直接赋值，赋予当前位置的值。同样举个例子说明  
+    相比于前面“最普通”的”=”，”:=”就容易理解多了。”:=”就表示直接赋值，赋予当前位置的值。同样举个例子说明  
     	 VIR_A := A  
-     	VIR_B := $(VIR_A) B  
+         VIR_B := $(VIR_A) B  
     	 VIR_A := AA  
-     	最后变量VIR_B的值是A B，即根据当前位置进行赋值。因此相比于”=”，”:=”才是真正意义上的直接赋值。  
-  (3) “?=” 
+    最后变量VIR_B的值是A B，即根据当前位置进行赋值。因此相比于”=”，”:=”才是真正意义上的直接赋值。  
+  (3)  “?=” 
   
-     	“?=”表示如果该变量没有被赋值，则赋予等号后的值。举例：  
-     	VIR ?= new_value  
-     	如果VIR在之前没有被赋值，那么VIR的值就为new_value.  
-     	VIR := old_value  
-     	VIR ?= new_value  
-     	这种情况下，VIR的值就是old_value  
+    “?=”表示如果该变量没有被赋值，则赋予等号后的值。举例：  
+       VIR ?= new_value  
+    如果VIR在之前没有被赋值，那么VIR的值就为new_value.  
+       VIR := old_value  
+       VIR ?= new_value  
+    这种情况下，VIR的值就是old_value  
   (4) ”+=”  
   
      	“+=”和平时写代码的理解是一样的，表示将等号后面的值添加到前面的变量上  
@@ -110,33 +111,33 @@
    
 ## 16.C++库函数总结：
 
-   (1)int转string   int k; std::to_string(k);   
-   (2)math.h中的floor()函数：向下取整；  
-   (3)函数原型：void *memcpy(void *dest, const void *src, size_t n);  有时会很耗时
+   (1) int转string   int k; std::to_string(k);   
+   (2) math.h中的floor()函数：向下取整；  
+   (3) 函数原型：void *memcpy(void *dest, const void *src, size_t n);  有时会很耗时
 
-      用法：#include<string.h>    
+     用法：#include<string.h>    
 
-      功能：从源src所指的内存地址的起始位置开始，拷贝n个字节的数据到目标dest所指的内存地址的起始位置中。  
+     功能：从源src所指的内存地址的起始位置开始，拷贝n个字节的数据到目标dest所指的内存地址的起始位置中。  
 
-      说明：  
+     说明：  
 
-      1）src和dest所指内存区域不能重叠，函数返回指向dest的指针。如果src和dest以任何形式出现了重叠，它的结果是未定义的。
+     1）src和dest所指内存区域不能重叠，函数返回指向dest的指针。如果src和dest以任何形式出现了重叠，它的结果是未定义的。
 
-      2）与strcpy相比，memcpy遇到’\0’不结束，而且一定会复制完n个字节。只要保证src开始有n字节的有效数据，dest开始有n字  
-      节内存空间就行。
+     2）与strcpy相比，memcpy遇到’\0’不结束，而且一定会复制完n个字节。只要保证src开始有n字节的有效数据，dest开始有n字  
+     节内存空间就行。
 
-      3）如果目标数组本身已有数据，执行memcpy之后，将覆盖原有数据（最多覆盖n个）。
+     3）如果目标数组本身已有数据，执行memcpy之后，将覆盖原有数据（最多覆盖n个）。
 
-         如果要追加数据，则每次执行memcpy()后，要将目标地址增加到要追加数据的地址。
+        如果要追加数据，则每次执行memcpy()后，要将目标地址增加到要追加数据的地址。
 
-      4）source和destin都不一定是数组，任意的可读写的空间均可。   
+     4）source和destin都不一定是数组，任意的可读写的空间均可。   
       
    (4) void *memset(void *s, int ch, size_t n); 
     
-      函数解释：将s中当前位置后面的n个字节 （typedef unsigned int size_t ）用 ch 替换并返回 s 。  
-      memset：作用是在一段内存块中填充某个给定的值，它是对较大的结构体或数组进行清零操作的一种最快方法。  
-      memset()函数原型是extern void *memset(void *buffer, int c, int count) buffer：为指针或是数组,c：是赋给buffer的值  
-      ,count：是buffer的长度.  
+     函数解释：将s中当前位置后面的n个字节 （typedef unsigned int size_t ）用 ch 替换并返回 s 。  
+     memset：作用是在一段内存块中填充某个给定的值，它是对较大的结构体或数组进行清零操作的一种最快方法。  
+     memset()函数原型是extern void *memset(void *buffer, int c, int count) buffer：为指针或是数组,c：是赋给buffer的值  
+     ,count：是buffer的长度.  
       
 
 ## 17.
