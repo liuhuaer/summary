@@ -33,7 +33,8 @@
   解决方法：右击项目-》属性-》链接器-》调试-》生成调试信息—》是
   
 ## 8.opencv库函数汇总：
-  (1)cv::putText()函数：在图像上绘制文字。  
+  (1)cv::putText()函数：在图像上绘制文字。 
+  
      void cv::putText(  
 		  cv::Mat& img, // 待绘制的图像  
 		  const string& text, // 待绘制的文字  
@@ -46,10 +47,12 @@
 		  bool bottomLeftOrigin = false // true='origin at lower left'  
 	 )  
   (2)Mat Mat::reshape(int cn, int rows=0) const  
+  
      cn: 表示通道数(channels), 如果设为0，则表示保持通道数不变，否则则变为设置的通道数。  
 	 rows: 表示矩阵行数。 如果设为0，则表示保持原有的行数不变，否则则变为设置的行数。  
   (3)void selectROIs(const String& windowName, InputArray img,  
-                             CV_OUT std::vector<Rect>& boundingBoxes, bool showCrosshair = true, bool fromCenter = false);  
+                             CV_OUT std::vector<Rect>& boundingBoxes, bool showCrosshair = true, bool fromCenter = false); 
+	
 	const String& windowName 显示操作过程的窗口名称。  
 	InputArray img 图像。  
 	bool showCrosshair 值为true时，将显示矩形框的十字线。  
@@ -140,7 +143,11 @@
      ,count：是buffer的长度.  
       
 
-## 17.
+## 17.int *foo() { int x = 0; return &x; }
+    这个函数不可行原因是，x是在函数内声明定义的，函数结束后要释放申请的空间  
+
+## 18.error C2275: “XXXX”: 将此类型用作表达式非法
+    C代码在vs中编译时变量的声明必须放在函数的开头
    
 
 	
