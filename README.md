@@ -34,7 +34,6 @@
   
 ## 8.opencv库函数汇总：
     (1)cv::putText()函数：在图像上绘制文字。 
-  
      void cv::putText(  
 		  cv::Mat& img, // 待绘制的图像  
 		  const string& text, // 待绘制的文字  
@@ -46,20 +45,22 @@
 		  int lineType = 8, // 线型（4邻域或8邻域，默认8邻域）  
 		  bool bottomLeftOrigin = false // true='origin at lower left'  
 	 )  
+	 
     (2)Mat Mat::reshape(int cn, int rows=0) const  
-  
      cn: 表示通道数(channels), 如果设为0，则表示保持通道数不变，否则则变为设置的通道数。  
 	 rows: 表示矩阵行数。 如果设为0，则表示保持原有的行数不变，否则则变为设置的行数。  
+	 
     (3)void selectROIs(const String& windowName, InputArray img,  
-                             CV_OUT std::vector<Rect>& boundingBoxes, bool showCrosshair = true, bool fromCenter = false); 
-	
+                       CV_OUT std::vector<Rect>& boundingBoxes, bool showCrosshair = true, bool fromCenter = false); 
 	const String& windowName 显示操作过程的窗口名称。  
 	InputArray img 图像。  
 	bool showCrosshair 值为true时，将显示矩形框的十字线。  
-	bool fromCenter 值为ture时，鼠标初始点作为矩形框的中点；值为false时，鼠标初始点为矩形的一个拐角。  
+	bool fromCenter 值为ture时，鼠标初始点作为矩形框的中点；值为false时，鼠标初始点为矩形的一个拐角。 
+	
     (4)cvRound()：返回跟参数最接近的整数值，即四舍五入；  
        cvFloor()：返回不大于参数的最大整数值，即向下取整;  
-       cvCeil()：返回不小于参数的最小整数值，即向上取整；  
+       cvCeil()：返回不小于参数的最小整数值，即向上取整； 
+       
     (5)cv::format() Mat类型的格式化输出函数，第一个参数是Mat类型变量，第二个参数是格式；  
   
 ## 9.constexpr变量必须在编译时进行初始化。所有constexpr对象都是const的，但是不是所有的const对象都是constexpr的。 VS2013不支持constexpr
