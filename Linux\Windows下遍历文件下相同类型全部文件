@@ -1,0 +1,62 @@
+//Linux
+
+#include <dirent.h>
+#include <string>
+#include <vector>
+
+int getFiles(const std::string path, std::vector<std::string>& files){
+	
+	int iFileCnt = 0;
+	DIR *dirptr = NULL;
+	struct dirent *dirp;
+ 
+	if((dirptr = opendir(path.c_str())) == NULL)//打开一个目录
+	{
+		return 0;
+	}
+	while ((dirp = readdir(dirptr)) != NULL)
+	{
+        if(strchr(dirp->d_name, '.')==NULL)
+            continue;
+		if ((dirp->d_type == DT_REG) && 0 ==(strcmp(strchr(dirp->d_name, '.'), ".jpg")))//判断是否为文件以及文件后缀名
+		{
+			files.push_back(dirp->d_name);
+		}
+		iFileCnt++;
+	}
+	closedir(dirptr);
+	
+	return iFileCnt;
+}
+
+//Windows
+
+#include<iostream>
+#include<io.h>
+#include<vector>
+#include<string>
+
+int get_files(std::string fileFolderPath,std::string fileExtension,std::vector<std::string>&file)
+{
+	std::string fileFolder = fileFolderPath + "\\*" + fileExtension;
+	std::string fileName;
+	struct _finddata_t fileInfo;
+	long long findResult = _findfirst(fileFolder.c_str(), &fileInfo);
+	if (findResult == -1)
+	{
+		_findclose(findResult);
+		return 0;
+	}
+	bool flag = 0;
+
+	do
+	{
+		fileName = fileFolderPath + "\\" + fileInfo.name;
+		if (fileInfo.attrib == _A_ARCH)
+		{
+			file.push_back(fileName);
+		}
+	} while (_findnext(findResult, &fileInfo) == 0);
+
+	_findclose(findResult);
+}
