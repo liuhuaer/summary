@@ -60,3 +60,48 @@ int get_files(std::string fileFolderPath,std::string fileExtension,std::vector<s
 
 	_findclose(findResult);
 }
+
+
+//C++保存文件到txt
+#include <fstream>　// c++文件操作
+#include <iomanip>　// 设置输出格式
+
+// 定义/打开输出的txt文件
+ofstream out_txt_file;
+out_txt_file.open("./numbers_test.txt", ios::out | ios::trunc);
+out_txt_file << fixed;
+
+// 保存数据到文件中
+for(int i = 0; i < 10; i++)
+{
+    out_txt_file << setprecision(4) << i << endl;
+}
+
+out_txt_file.close();
+
+
+注意：保存的数据为浮点数时，在向文件流中添加数据时可以通过setprecision(4)设置保存数据的小数点位数
+
+#include <iostream>
+#include <fstream> // c++文件操作
+#include <iomanip> // 设置输出格式
+
+using namespace std;
+
+int main(int argc, char const *argv[])
+{
+    // 定义/打开输出的txt文件
+    ofstream out_txt_file;
+    out_txt_file.open("./numbers_test.txt", ios::out | ios::trunc);
+    out_txt_file << fixed;
+
+    // 保存数据到文件中
+    for(int i = 0; i < 10; i++)
+    {
+        out_txt_file << setprecision(4) << i << endl;
+    }
+    // 关闭文件
+    out_txt_file.close();
+
+    return 0;
+}
